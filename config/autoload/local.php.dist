@@ -11,4 +11,35 @@
  * credentials from accidentally being committed into version control.
  */
 
-return array();
+// non-sqlite database connection
+$ormParams = [
+    'database'  => 'doctrine-skeleton',
+    'username'  => 'root',
+    'password'  => '123',
+    'hostname'  => 'localhost',
+    'port'  => '3306',
+];
+
+
+/** -----End User Edit-------------------------------------- **/
+
+return array(
+    /**
+     * Doctrine configuration for MySQL or Maria DB
+     */
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'params' => array(
+                    'database'  => $ormParams['database'],
+                    'user'  => $ormParams['username'],
+                    'password'  => $ormParams['password'],
+                    'host'  => $ormParams['hostname'],
+                    'dbname'  => $ormParams['database'],
+                    'port'  => $ormParams['port'],
+                ),
+            ),
+        ),
+    ),
+);

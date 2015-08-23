@@ -16,5 +16,6 @@ return array(
             './module',
             './vendor'
         ),
+        'config_glob_paths' => array(realpath(__DIR__) . '/autoload/{,*.}{global,local}.php'),
     )
 );
