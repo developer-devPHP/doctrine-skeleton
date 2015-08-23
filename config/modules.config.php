@@ -24,4 +24,10 @@ return array(
     'ZF\Rest',
     'ZF\Rpc',
     'ZF\Versioning',
+    'DoctrineModule',
+    'DoctrineORMModule',
+    'ZF\OAuth2\Doctrine',
+    'ZfcBase',
+    'ZfcUser',
+    'ZfcUserDoctrineORM',
 );

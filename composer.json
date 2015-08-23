@@ -30,7 +30,9 @@
         "zendframework/zendframework": "~2.4",
         "zfcampus/zf-apigility": "~1.1",
         "zfcampus/zf-apigility-documentation": "^1.0.5",
-        "zfcampus/zf-development-mode": "~2.0"
+        "zfcampus/zf-development-mode": "~2.0",
+        "zfcampus/zf-oauth2-doctrine": "dev-master#4159561d9a90709b765934d76fca5fe2e64dfeb8",
+        "zf-commons/zfc-user-doctrine-orm": "^1.0"
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",
