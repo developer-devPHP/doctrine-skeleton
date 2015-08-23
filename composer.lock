@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a57c88626a3c55bd21e15a7eaacbfe7",
+    "hash": "dac79e6df42761eff4080b82506715c2",
     "packages": [
         {
             "name": "bshaffer/oauth2-server-php",
@@ -932,6 +932,61 @@
                 }
             ],
             "time": "2015-02-03 12:10:50"
+        },
+        {
+            "name": "phpro/zf-doctrine-hydration-module",
+            "version": "0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpro/zf-doctrine-hydration-module.git",
+                "reference": "e7731d74ee586bc350beae9f74dd29f11811d89e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpro/zf-doctrine-hydration-module/zipball/e7731d74ee586bc350beae9f74dd29f11811d89e",
+                "reference": "e7731d74ee586bc350beae9f74dd29f11811d89e",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": ">=2.1",
+                "doctrine/doctrine-module": ">=0.8.0",
+                "doctrine/instantiator": "~1.0.4",
+                "php": ">=5.3.23",
+                "zendframework/zend-modulemanager": "2.*",
+                "zendframework/zend-servicemanager": "2.*",
+                "zendframework/zend-stdlib": "2.*"
+            },
+            "require-dev": {
+                "doctrine/doctrine-mongo-odm-module": "*",
+                "doctrine/doctrine-orm-module": "*",
+                "doctrine/mongodb-odm": "@dev",
+                "fabpot/php-cs-fixer": "*",
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpro\\DoctrineHydrationModule\\": "src/",
+                    "PhproTest\\DoctrineHydrationModule\\": "test/src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Toon Verwerft",
+                    "email": "toon.verwerft@phpro.be"
+                }
+            ],
+            "description": "Doctrine hydrators for ZF2",
+            "keywords": [
+                "doctrine",
+                "hydrator",
+                "zf2"
+            ],
+            "time": "2015-01-16 06:13:50"
         },
         {
             "name": "phpspec/prophecy",
@@ -5145,6 +5200,68 @@
             "time": "2015-07-15 15:23:32"
         },
         {
+            "name": "zfcampus/zf-apigility-doctrine",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zfcampus/zf-apigility-doctrine.git",
+                "reference": "c898dd0c171b6b605dfd0862d63207ffda23d02b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zfcampus/zf-apigility-doctrine/zipball/c898dd0c171b6b605dfd0862d63207ffda23d02b",
+                "reference": "c898dd0c171b6b605dfd0862d63207ffda23d02b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "phpro/zf-doctrine-hydration-module": "^0.1.5",
+                "zfcampus/zf-apigility": "~1.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-mongo-odm-module": "^0.8.0",
+                "doctrine/doctrine-orm-module": "^0.8.0",
+                "doctrine/mongodb-odm": "~1.0.0@beta",
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "~2.0",
+                "zendframework/zend-form": ">=2.4",
+                "zendframework/zend-log": ">=2.4",
+                "zendframework/zend-serializer": ">=2.4",
+                "zendframework/zend-test": ">=2.4",
+                "zfcampus/zf-apigility-admin": "~1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev",
+                    "dev-develop": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ZF\\Apigility\\Doctrine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Anderson",
+                    "email": "tanderson@soliantconsulting.com"
+                }
+            ],
+            "description": "Doctrine for Apigility",
+            "homepage": "http://www.apigility.com/",
+            "keywords": [
+                "api",
+                "apigility",
+                "doctrine"
+            ],
+            "time": "2015-06-11 18:49:53"
+        },
+        {
             "name": "zfcampus/zf-apigility-documentation",
             "version": "1.1.0",
             "source": {
@@ -6479,16 +6596,16 @@
         },
         {
             "name": "zfcampus/zf-apigility-admin-ui",
-            "version": "1.2.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zfcampus/zf-apigility-admin-ui.git",
-                "reference": "1daff7ab993e8093ab831975f35cf3eda7ba9725"
+                "reference": "5e442fb4308d451b43afbc9979295a7fd7ddce21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zfcampus/zf-apigility-admin-ui/zipball/1daff7ab993e8093ab831975f35cf3eda7ba9725",
-                "reference": "1daff7ab993e8093ab831975f35cf3eda7ba9725",
+                "url": "https://api.github.com/repos/zfcampus/zf-apigility-admin-ui/zipball/bcbecb02ab994d9c64922d2b84e8a0e52707b006",
+                "reference": "5e442fb4308d451b43afbc9979295a7fd7ddce21",
                 "shasum": ""
             },
             "require": {
@@ -6523,7 +6640,7 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2015-07-23 14:13:32"
+            "time": "2015-08-10 17:00:00"
         },
         {
             "name": "zfcampus/zf-console",
@@ -6636,7 +6753,8 @@
     "stability-flags": {
         "zfcampus/zf-oauth2-doctrine": 20,
         "zendframework/zftool": 20,
-        "zendframework/zend-developer-tools": 20
+        "zendframework/zend-developer-tools": 20,
+        "zfcampus/zf-apigility-admin-ui": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

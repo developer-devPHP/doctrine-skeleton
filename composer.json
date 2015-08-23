@@ -32,12 +32,14 @@
         "zfcampus/zf-apigility-documentation": "^1.0.5",
         "zfcampus/zf-development-mode": "~2.0",
         "zfcampus/zf-oauth2-doctrine": "dev-master#4159561d9a90709b765934d76fca5fe2e64dfeb8",
-        "zf-commons/zfc-user-doctrine-orm": "^1.0"
+        "zf-commons/zfc-user-doctrine-orm": "^1.0",
+        "zfcampus/zf-apigility-doctrine": "^1.0"
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",
         "zendframework/zend-developer-tools": "dev-master",
         "zfcampus/zf-apigility-admin": "^1.3.1",
+	"zfcampus/zf-apigility-admin-ui": "dev-master#5e442fb4308d451b43afbc9979295a7fd7ddce21",
         "zfcampus/zf-deploy": "~1.0"
     },
     "suggest": {
