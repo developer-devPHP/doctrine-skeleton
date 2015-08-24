@@ -9,7 +9,7 @@ vagrant up
 vagrant ssh
 cd /vagrant
 cp config/autoload/local.php.dist config/autoload/local.php
-php composer.phar install
+composer install
 php public/index.php orm:schema-tool:create
 php public/index.php data-fixture:import
 ```

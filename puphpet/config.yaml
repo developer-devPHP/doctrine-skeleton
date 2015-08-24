@@ -69,7 +69,9 @@ vagrantfile:
         host: detect
 server:
     install: '1'
-    packages: {  }
+    packages:
+        - vim
+        - httpie
 users_groups:
     install: '1'
     groups: {  }
