@@ -33,7 +33,8 @@
         "zfcampus/zf-development-mode": "~2.0",
         "zfcampus/zf-oauth2-doctrine": "dev-master#4159561d9a90709b765934d76fca5fe2e64dfeb8",
         "zf-commons/zfc-user-doctrine-orm": "^1.0",
-        "zfcampus/zf-apigility-doctrine": "^1.0"
+        "zfcampus/zf-apigility-doctrine": "^1.0",
+        "hounddog/doctrine-data-fixture-module": "dev-master#062e25de6939e67a4acd9a40187634214c9bc04d"
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",

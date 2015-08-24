@@ -23,6 +23,7 @@ return array(
     'ZF\\Versioning',
     'DoctrineModule',
     'DoctrineORMModule',
+    'DoctrineDataFixtureModule',
     'Phpro\DoctrineHydrationModule',
     'ZF\\Apigility\\Doctrine\\Server',
     'ZF\\OAuth2\\Doctrine',

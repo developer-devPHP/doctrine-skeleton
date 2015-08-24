@@ -6,9 +6,8 @@
     </id>
     <field name="username" type="string" nullable="true"/>
     <field name="password" type="string" nullable="true"/>
-    <field name="profile" type="string" nullable="true"/>
     <field name="email" type="string" nullable="true"/>
-    <field name="country" type="string" nullable="true"/>
-    <field name="phone_number" type="string" nullable="true"/>
+    <field name="displayName" type="string" nullable="true"/>
+    <field name="state" type="string" nullable="true"/>
   </entity>
 </doctrine-mapping>
