@@ -1,43 +1,16 @@
 <?php
-/**
- * Local Configuration Override
- *
- * This configuration override file is for overriding environment-specific and
- * security-sensitive configuration information. Copy this file without the
- * .dist extension at the end and populate values as needed.
- *
- * @NOTE: This file is ignored from Git by default with the .gitignore included
- * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
- * credentials from accidentally being committed into version control.
- */
-
-// non-sqlite database connection
-$ormParams = [
-    'database'  => 'doctrine-skeleton',
-    'username'  => 'root',
-    'password'  => '123',
-    'hostname'  => 'localhost',
-    'port'  => '3306',
-];
-
-
-/** -----End User Edit-------------------------------------- **/
-
 return array(
-    /**
-     * Doctrine configuration for MySQL or Maria DB
-     */
     'doctrine' => array(
         'connection' => array(
             'orm_default' => array(
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'driverClass' => 'Doctrine\\DBAL\\Driver\\PDOMySql\\Driver',
                 'params' => array(
-                    'database'  => $ormParams['database'],
-                    'user'  => $ormParams['username'],
-                    'password'  => $ormParams['password'],
-                    'host'  => $ormParams['hostname'],
-                    'dbname'  => $ormParams['database'],
-                    'port'  => $ormParams['port'],
+                    'database' => 'doctrine-skeleton',
+                    'user' => 'root',
+                    'password' => '123',
+                    'host' => 'localhost',
+                    'dbname' => 'doctrine-skeleton',
+                    'port' => '3306',
                 ),
             ),
         ),
