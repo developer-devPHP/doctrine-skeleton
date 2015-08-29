@@ -2,12 +2,6 @@
 return array(
     'zf-mvc-auth' => array(
         'authentication' => array(
-            'map' => array(
-                'DbApi\\V1' => 'oauth2_doctrine',
-            ),
-        ),
-
-        'authentication' => array(
             'adapters' => array(
                 'oauth2_doctrine' => array(
                     'adapter' => 'ZF\\MvcAuth\\Authentication\\OAuth2Adapter',
@@ -17,13 +11,15 @@ return array(
                     ),
                 ),
             ),
+            'map' => array(
+                'DbApi\\V1' => 'oauth2_doctrine',
+            ),
         ),
     ),
-
     'zf-oauth2' => array(
-        'allow_implicit' => false, // default (set to true when you need to support browser-based or mobile apps)
-        'access_lifetime' => 3600, // default (set a value in seconds for access tokens lifetime)
-        'enforce_state'  => true,  // default
-//        'storage'        => 'oauth2.doctrineadapter.default',
+        'allow_implicit' => false,
+        'access_lifetime' => 3600,
+        'enforce_state' => true,
+        'storage' => 'oauth2.doctrineadapter.default',
     ),
 );
