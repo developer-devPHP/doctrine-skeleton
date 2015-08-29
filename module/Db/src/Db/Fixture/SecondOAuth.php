@@ -5,26 +5,26 @@ namespace Db\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Db\Entity;
-use ZF\OAuth2\Doctrine\Entity as OAuthEntity;
+use SecondOAuth\Entity as OAuthEntity;
 use Zend\Crypt\Password\Bcrypt;
 
-class DoctrineSkeleton implements FixtureInterface
+class SecondOAuth implements FixtureInterface
 {
     public function load(ObjectManager $objectManager)
     {
-        $admin = new Entity\User();
+        $admin = new Entity\SecondUser();
         $admin->setDisplayName('Administrator');
         $admin->setUsername('administrator');
-        $admin->setEmail('administrator@doctrine-skeleton');
+        $admin->setEmail('administrator@doctrine-skeleton-second');
         $bcrypt = new Bcrypt();
         $bcrypt->setCost(14);
         $admin->setPassword($bcrypt->create('password'));
         $objectManager->persist($admin);
 
-        $user = new Entity\User();
+        $user = new Entity\SecondUser();
         $user->setDisplayName('User');
         $user->setUsername('user');
-        $user->setEmail('user@doctrine-skeleton');
+        $user->setEmail('user@doctrine-skeleton-second');
         $bcrypt = new Bcrypt();
         $bcrypt->setCost(14);
         $user->setPassword($bcrypt->create('password'));
@@ -32,7 +32,7 @@ class DoctrineSkeleton implements FixtureInterface
 
         $client = new OAuthEntity\Client();
         $client->setUser($admin);
-        $client->setClientId('doctrine-skeleton');
+        $client->setClientId('doctrine-skeleton-second');
         $client->setSecret($bcrypt->create('password'));
         $client->setGrantType(array(
             'authorization_code',
@@ -43,22 +43,22 @@ class DoctrineSkeleton implements FixtureInterface
         ));
         $objectManager->persist($client);
 
-        $artist1 = new Entity\Artist();
-        $artist1->setName('Grateful Dead');
+        $artist1 = new Entity\SecondArtist();
+        $artist1->setName('String Cheese Incident');
         $objectManager->persist($artist1);
 
-        $artist2 = new Entity\Artist();
-        $artist2->setName('Phish');
+        $artist2 = new Entity\SecondArtist();
+        $artist2->setName('Keller Williams');
         $objectManager->persist($artist2);
 
-        $album1 = new Entity\Album();
-        $album1->setArtist($artist1);
-        $album1->setName('American Beauty');
+        $album1 = new Entity\SecondAlbum();
+        $album1->setSecondArtist($artist1);
+        $album1->setName('Born on the Wrong Planet');
         $objectManager->persist($album1);
 
-        $album2 = new Entity\Album();
-        $album2->setArtist($artist2);
-        $album2->setName('Farmhouse');
+        $album2 = new Entity\SecondAlbum();
+        $album2->setSecondArtist($artist2);
+        $album2->setName('Laugh');
         $objectManager->persist($album2);
 
         $objectManager->flush();

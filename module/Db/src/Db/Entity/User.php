@@ -161,4 +161,100 @@ class User implements OAuth2UserInterface, ArraySerializableInterface, ZfcUserIn
     {
         return $this->refreshToken;
     }
+
+    /**
+     * Add client
+     *
+     * @param \ZF\OAuth2\Doctrine\Entity\Client $client
+     *
+     * @return User
+     */
+    public function addClient(\ZF\OAuth2\Doctrine\Entity\Client $client)
+    {
+        $this->client[] = $client;
+
+        return $this;
+    }
+
+    /**
+     * Remove client
+     *
+     * @param \ZF\OAuth2\Doctrine\Entity\Client $client
+     */
+    public function removeClient(\ZF\OAuth2\Doctrine\Entity\Client $client)
+    {
+        $this->client->removeElement($client);
+    }
+
+    /**
+     * Add accessToken
+     *
+     * @param \ZF\OAuth2\Doctrine\Entity\AccessToken $accessToken
+     *
+     * @return User
+     */
+    public function addAccessToken(\ZF\OAuth2\Doctrine\Entity\AccessToken $accessToken)
+    {
+        $this->accessToken[] = $accessToken;
+
+        return $this;
+    }
+
+    /**
+     * Remove accessToken
+     *
+     * @param \ZF\OAuth2\Doctrine\Entity\AccessToken $accessToken
+     */
+    public function removeAccessToken(\ZF\OAuth2\Doctrine\Entity\AccessToken $accessToken)
+    {
+        $this->accessToken->removeElement($accessToken);
+    }
+
+    /**
+     * Add authorizationCode
+     *
+     * @param \ZF\OAuth2\Doctrine\Entity\AuthorizationCode $authorizationCode
+     *
+     * @return User
+     */
+    public function addAuthorizationCode(\ZF\OAuth2\Doctrine\Entity\AuthorizationCode $authorizationCode)
+    {
+        $this->authorizationCode[] = $authorizationCode;
+
+        return $this;
+    }
+
+    /**
+     * Remove authorizationCode
+     *
+     * @param \ZF\OAuth2\Doctrine\Entity\AuthorizationCode $authorizationCode
+     */
+    public function removeAuthorizationCode(\ZF\OAuth2\Doctrine\Entity\AuthorizationCode $authorizationCode)
+    {
+        $this->authorizationCode->removeElement($authorizationCode);
+    }
+
+    /**
+     * Add refreshToken
+     *
+     * @param \ZF\OAuth2\Doctrine\Entity\RefreshToken $refreshToken
+     *
+     * @return User
+     */
+    public function addRefreshToken(\ZF\OAuth2\Doctrine\Entity\RefreshToken $refreshToken)
+    {
+        $this->refreshToken[] = $refreshToken;
+
+        return $this;
+    }
+
+    /**
+     * Remove refreshToken
+     *
+     * @param \ZF\OAuth2\Doctrine\Entity\RefreshToken $refreshToken
+     */
+    public function removeRefreshToken(\ZF\OAuth2\Doctrine\Entity\RefreshToken $refreshToken)
+    {
+        $this->refreshToken->removeElement($refreshToken);
+    }
 }

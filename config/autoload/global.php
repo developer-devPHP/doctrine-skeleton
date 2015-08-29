@@ -7,7 +7,14 @@ return array(
                     'adapter' => 'ZF\\MvcAuth\\Authentication\\OAuth2Adapter',
                     'storage' => array(
                         'storage' => 'oauth2.doctrineadapter.default',
-                        'route' => '/oauth',
+                        'route' => 'oauth',
+                    ),
+                ),
+                'oauth2_doctrine_second' => array(
+                    'adapter' => 'ZF\\MvcAuth\\Authentication\\OAuth2Adapter',
+                    'storage' => array(
+                        'storage' => 'oauth2.doctrineadapter.second',
+                        'route' => 'oauth-second',
                     ),
                 ),
             ),

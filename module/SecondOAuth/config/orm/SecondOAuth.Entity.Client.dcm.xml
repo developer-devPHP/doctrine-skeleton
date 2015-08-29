@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="SecondOAuth\Entity\Client" table="Client_OAuth2_Second">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="clientId" type="string" nullable="true"/>
+    <field name="secret" type="string" nullable="true"/>
+    <field name="redirectUri" type="text" nullable="true"/>
+    <field name="grantType" type="array" nullable="true"/>
+    <one-to-many field="accessToken" target-entity="SecondOAuth\Entity\AccessToken" mapped-by="client"/>
+    <one-to-many field="refreshToken" target-entity="SecondOAuth\Entity\RefreshToken" mapped-by="client"/>
+    <one-to-many field="authorizationCode" target-entity="SecondOAuth\Entity\AuthorizationCode" mapped-by="client"/>
+    <one-to-many field="jwt" target-entity="SecondOAuth\Entity\Jwt" mapped-by="client"/>
+    <one-to-many field="jti" target-entity="SecondOAuth\Entity\Jti" mapped-by="client"/>
+    <one-to-one field="publicKey" target-entity="SecondOAuth\Entity\PublicKey" mapped-by="client"/>
+  </entity>
+</doctrine-mapping>

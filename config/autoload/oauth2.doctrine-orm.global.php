@@ -6,9 +6,332 @@
  * A good example to start from is in test ZFTest\OAuth2\Doctrine\Entity\User
  */
 $userEntity = 'Db\Entity\User';
+$secondUserEntity = 'Db\Entity\SecondUser';
 
 return array(
     'zf-oauth2-doctrine' => array(
+        'second' => array(
+            'object_manager' => 'doctrine.entitymanager.orm_default',
+            'event_manager' => 'doctrine.eventmanager.orm_default',
+            'driver' => 'doctrine.driver.orm_default',
+            'auth_identity_fields' => array('username'),
+            'enable_default_entities' => true,
+            'bcrypt_cost' => 14, # match zfcuser
+            // Dynamically map the user_entity to the client_entity
+            'dynamic_mapping' => array(
+                'user_entity' => array(
+                    'entity' => $secondUserEntity,
+                    'field' => 'user',
+                ),
+                'client_entity' => array(
+                    'entity' => 'SecondOAuth\Entity\Client',
+                    'field' => 'client',
+                ),
+                'access_token_entity' => array(
+                    'entity' => 'SecondOAuth\Entity\AccessToken',
+                    'field' => 'accessToken',
+                ),
+                'authorization_code_entity' => array(
+                    'entity' => 'SecondOAuth\Entity\AuthorizationCode',
+                    'field' => 'authorizationCode',
+                ),
+                'refresh_token_entity' => array(
+                    'entity' => 'SecondOAuth\Entity\RefreshToken',
+                    'field' => 'refreshToken',
+                ),
+            ),
+            'mapping' => array(
+                'User' => array(
+                    'entity' => $secondUserEntity,
+                    'mapping' => array(
+                        'user_id' => array(
+                            'type' => 'field',
+                            'name' => 'id',
+                            'datatype' => 'integer',
+                        ),
+                        'username' => array(
+                            'type' => 'field',
+                            'name' => 'username',
+                            'datatype' => 'string',
+                        ),
+                        'password' => array(
+                            'type' => 'field',
+                            'name' => 'password',
+                            'datatype' => 'string',
+                        ),
+                    ),
+                ),
+
+                'Client' => array(
+                    'entity' => 'SecondOAuth\Entity\Client',
+                    'mapping' => array(
+                        'client_id' => array(
+                            'type' => 'field',
+                            'name' => 'clientId',
+                            'datatype' => 'integer',
+                        ),
+                        'client_secret' => array(
+                            'type' => 'field',
+                            'name' => 'secret',
+                            'datatype' => 'string',
+                        ),
+                        'redirect_uri' => array(
+                            'type' => 'field',
+                            'name' => 'redirectUri',
+                            'datatype' => 'text',
+                        ),
+                        'grant_types' => array(
+                            'type' => 'field',
+                            'name' => 'grantType',
+                            'datatype' => 'array',
+                        ),
+                        'scope' => array(
+                            'type' => 'collection',
+                            'name' => 'scope',
+                            'entity' => 'SecondOAuth\Entity\Scope',
+                            'mapper' => 'Scope',
+                        ),
+                        'user_id' => array(
+                            'type' => 'relation',
+                            'name' => 'user',
+                            'entity_field_name' => 'id',
+                            'entity' => $secondUserEntity,
+                            'datatype' => 'integer',
+                            'allow_null' => true,
+                        ),
+                    ),
+                ),
+
+                'AccessToken' => array(
+                    'entity' => 'SecondOAuth\Entity\AccessToken',
+                    'mapping' => array(
+                        'access_token' => array(
+                            'type' => 'field',
+                            'name' => 'accessToken',
+                            'datatype' => 'text',
+                        ),
+                        'expires' => array(
+                            'type' => 'field',
+                            'name' => 'expires',
+                            'datatype' => 'datetime',
+                        ),
+                        'scope' => array(
+                            'type' => 'collection',
+                            'name' => 'scope',
+                            'entity' => 'SecondOAuth\Entity\Scope',
+                            'mapper' => 'Scope',
+                        ),
+                        'client_id' => array(
+                            'type' => 'relation',
+                            'name' => 'client',
+                            'entity_field_name' => 'clientId',
+                            'entity' => 'SecondOAuth\Entity\Client',
+                            'datatype' => 'integer',
+                        ),
+                        'user_id' => array(
+                            'type' => 'relation',
+                            'name' => 'user',
+                            'entity_field_name' => 'id',
+                            'entity' => $secondUserEntity,
+                            'datatype' => 'integer',
+                            'allow_null' => true,
+                        ),
+                    ),
+                ),
+
+                'RefreshToken' => array(
+                    'entity' => 'SecondOAuth\Entity\RefreshToken',
+                    'mapping' => array(
+                        'refresh_token' => array(
+                            'type' => 'field',
+                            'name' => 'refreshToken',
+                            'datatype' => 'string',
+                        ),
+                        'expires' => array(
+                            'type' => 'field',
+                            'name' => 'expires',
+                            'datatype' => 'datetime',
+                        ),
+                        'scope' => array(
+                            'type' => 'collection',
+                            'name' => 'scope',
+                            'entity' => 'SecondOAuth\Entity\Scope',
+                            'mapper' => 'Scope',
+                        ),
+                        'client_id' => array(
+                            'type' => 'relation',
+                            'name' => 'client',
+                            'entity_field_name' => 'clientId',
+                            'entity' => 'SecondOAuth\Entity\Client',
+                            'datatype' => 'integer',
+                        ),
+                        'user_id' => array(
+                            'type' => 'relation',
+                            'name' => 'user',
+                            'entity_field_name' => 'id',
+                            'entity' => $secondUserEntity,
+                            'datatype' => 'integer',
+                            'allow_null' => true,
+                        ),
+                    ),
+                ),
+
+                'AuthorizationCode' => array(
+                    'entity' => 'SecondOAuth\Entity\AuthorizationCode',
+                    'mapping' => array(
+                        'authorization_code' => array(
+                            'type' => 'field',
+                            'name' => 'authorizationCode',
+                            'datatype' => 'string',
+                        ),
+                        'redirect_uri' => array(
+                            'type' => 'field',
+                            'name' => 'redirectUri',
+                            'datatype' => 'text',
+                        ),
+                        'expires' => array(
+                            'type' => 'field',
+                            'name' => 'expires',
+                            'datatype' => 'datetime',
+                        ),
+                        'scope' => array(
+                            'type' => 'collection',
+                            'name' => 'scope',
+                            'entity' => 'SecondOAuth\Entity\Scope',
+                            'mapper' => 'Scope',
+                        ),
+                        'id_token' => array(
+                            'type' => 'field',
+                            'name' => 'idToken',
+                            'datatype' => 'text',
+                        ),
+                        'client_id' => array(
+                            'type' => 'relation',
+                            'name' => 'client',
+                            'entity_field_name' => 'clientId',
+                            'entity' => 'SecondOAuth\Entity\Client',
+                            'datatype' => 'integer',
+                        ),
+                        'user_id' => array(
+                            'type' => 'relation',
+                            'name' => 'user',
+                            'entity_field_name' => 'id',
+                            'entity' => $secondUserEntity,
+                            'datatype' => 'integer',
+                            'allow_null' => true,
+                        ),
+                    ),
+                ),
+
+                'Jwt' => array(
+                    'entity' => 'SecondOAuth\Entity\Jwt',
+                    'mapping' => array(
+                        'subject' => array(
+                            'type' => 'field',
+                            'name' => 'subject',
+                            'datatype' => 'string',
+                        ),
+                        'public_key' => array(
+                            'type' => 'field',
+                            'name' => 'publicKey',
+                            'datatype' => 'text',
+                        ),
+                        'client_id' => array(
+                            'type' => 'relation',
+                            'name' => 'client',
+                            'entity_field_name' => 'clientId',
+                            'entity' => 'SecondOAuth\Entity\Client',
+                            'datatype' => 'integer',
+                        ),
+                    ),
+                ),
+
+                'Jti' => array(
+                    'entity' => 'SecondOAuth\Entity\Jti',
+                    'mapping' => array(
+                        'subject' => array(
+                            'type' => 'field',
+                            'name' => 'subject',
+                            'datatype' => 'string',
+                        ),
+                        'audience' => array(
+                            'type' => 'field',
+                            'name' => 'audience',
+                            'datatype' => 'string',
+                        ),
+                        'expires' => array(
+                            'type' => 'field',
+                            'name' => 'expires',
+                            'datatype' => 'datetime',
+                        ),
+                        'jti' => array(
+                            'type' => 'field',
+                            'name' => 'jti',
+                            'datatype' => 'text',
+                        ),
+                        'client_id' => array(
+                            'type' => 'relation',
+                            'name' => 'client',
+                            'entity_field_name' => 'clientId',
+                            'entity' => 'SecondOAuth\Entity\Client',
+                            'datatype' => 'integer',
+                        ),
+                    ),
+                ),
+
+                'Scope' => array(
+                    'entity' => 'SecondOAuth\Entity\Scope',
+                    'mapping' => array(
+                        'scope' => array(
+                            'type' => 'field',
+                            'name' => 'scope',
+                            'datatype' => 'text',
+                        ),
+                        'is_default' => array(
+                            'type' => 'field',
+                            'name' => 'isDefault',
+                            'datatype' => 'boolean',
+                        ),
+                        'client_id' => array(
+                            'type' => 'relation',
+                            'name' => 'client',
+                            'entity_field_name' => 'clientId',
+                            'entity' => 'SecondOAuth\Entity\Client',
+                            'datatype' => 'integer',
+                        ),
+                    ),
+                ),
+
+                'PublicKey' => array(
+                    'entity' => 'SecondOAuth\Entity\PublicKey',
+                    'mapping' => array(
+                        'public_key' => array(
+                            'type' => 'field',
+                            'name' => 'publicKey',
+                            'datatype' => 'text',
+                        ),
+                        'private_key' => array(
+                            'type' => 'field',
+                            'name' => 'privateKey',
+                            'datatype' => 'text',
+                        ),
+                        'encryption_algorithm' => array(
+                            'type' => 'field',
+                            'name' => 'encryptionAlgorithm',
+                            'datatype' => 'string',
+                        ),
+                        'client_id' => array(
+                            'type' => 'relation',
+                            'name' => 'client',
+                            'entity_field_name' => 'clientId',
+                            'entity' => 'SecondOAuth\Entity\Client',
+                            'datatype' => 'integer',
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
         'default' => array(
             'object_manager' => 'doctrine.entitymanager.orm_default',
             'event_manager' => 'doctrine.eventmanager.orm_default',
