@@ -24,7 +24,7 @@ return array(
     'DoctrineModule',
     'DoctrineORMModule',
     'DoctrineDataFixtureModule',
-    'Phpro\DoctrineHydrationModule',
+    'Phpro\\DoctrineHydrationModule',
     'ZF\\Apigility\\Doctrine\\Server',
     'ZF\\OAuth2\\Doctrine',
     'ZfcBase',
@@ -32,4 +32,6 @@ return array(
     'ZfcUserDoctrineORM',
     'Db',
     'DbApi',
+    'SecondOAuth',
+    'SecondApi',
 );

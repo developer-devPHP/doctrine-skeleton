@@ -20,6 +20,7 @@ return array(
             ),
             'map' => array(
                 'DbApi\\V1' => 'oauth2_doctrine',
+                'SecondApi\\V1' => 'oauth2_doctrine_second',
             ),
         ),
     ),

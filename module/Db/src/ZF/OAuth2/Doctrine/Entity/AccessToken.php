@@ -1,61 +1,12 @@
 <?php
 
-namespace SecondOAuth\Entity;
+namespace ZF\OAuth2\Doctrine\Entity;
 
 /**
  * AccessToken
  */
 class AccessToken
 {
-    public function getArrayCopy()
-    {
-        return array(
-            'id' => $this->getId(),
-            'accessToken' => $this->getAccessToken(),
-            'expires' => $this->getExpires(),
-            'client' => $this->getClient(),
-            'scope' => $this->getScope(),
-            'user' => $this->getUser(),
-        );
-    }
-
-    public function exchangeArray(array $array)
-    {
-        foreach ($array as $key => $value) {
-            switch ($key) {
-                case 'accessToken':
-                    $this->setAccessToken($value);
-                    break;
-                case 'expires':
-                    $this->setExpires($value);
-                    break;
-                case 'client':
-                    $this->setClient($value);
-                    break;
-                case 'scope':
-                    // Clear old collection
-                    foreach ($value as $remove) {
-                        $this->removeScope($remove);
-                        $remove->removeAccessToken($this);
-                    }
-
-                    // Add new collection
-                    foreach ($value as $scope) {
-                        $this->addScope($scope);
-                        $scope->addAccessToken($this);
-                    }
-                    break;
-                case 'user':
-                    $this->setUser($value);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @var string
      */
@@ -72,7 +23,7 @@ class AccessToken
     private $id;
 
     /**
-     * @var \SecondOAuth\Entity\Client
+     * @var \ZF\OAuth2\Doctrine\Entity\Client
      */
     private $client;
 
@@ -82,7 +33,7 @@ class AccessToken
     private $scope;
 
     /**
-     * @var \Db\Entity\SecondUser
+     * @var \Db\Entity\User
      */
     private $user;
 
@@ -155,11 +106,11 @@ class AccessToken
     /**
      * Set client
      *
-     * @param \SecondOAuth\Entity\Client $client
+     * @param \ZF\OAuth2\Doctrine\Entity\Client $client
      *
      * @return AccessToken
      */
-    public function setClient(\SecondOAuth\Entity\Client $client)
+    public function setClient(\ZF\OAuth2\Doctrine\Entity\Client $client)
     {
         $this->client = $client;
 
@@ -169,7 +120,7 @@ class AccessToken
     /**
      * Get client
      *
-     * @return \SecondOAuth\Entity\Client
+     * @return \ZF\OAuth2\Doctrine\Entity\Client
      */
     public function getClient()
     {
@@ -179,11 +130,11 @@ class AccessToken
     /**
      * Add scope
      *
-     * @param \SecondOAuth\Entity\Scope $scope
+     * @param \ZF\OAuth2\Doctrine\Entity\Scope $scope
      *
      * @return AccessToken
      */
-    public function addScope(\SecondOAuth\Entity\Scope $scope)
+    public function addScope(\ZF\OAuth2\Doctrine\Entity\Scope $scope)
     {
         $this->scope[] = $scope;
 
@@ -193,9 +144,9 @@ class AccessToken
     /**
      * Remove scope
      *
-     * @param \SecondOAuth\Entity\Scope $scope
+     * @param \ZF\OAuth2\Doctrine\Entity\Scope $scope
      */
-    public function removeScope(\SecondOAuth\Entity\Scope $scope)
+    public function removeScope(\ZF\OAuth2\Doctrine\Entity\Scope $scope)
     {
         $this->scope->removeElement($scope);
     }
@@ -213,11 +164,11 @@ class AccessToken
     /**
      * Set user
      *
-     * @param \Db\Entity\SecondUser $user
+     * @param \Db\Entity\User $user
      *
      * @return AccessToken
      */
-    public function setUser(\Db\Entity\SecondUser $user = null)
+    public function setUser(\Db\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -227,11 +178,10 @@ class AccessToken
     /**
      * Get user
      *
-     * @return \Db\Entity\SecondUser
+     * @return \Db\Entity\User
      */
     public function getUser()
     {
         return $this->user;
     }
 }
-

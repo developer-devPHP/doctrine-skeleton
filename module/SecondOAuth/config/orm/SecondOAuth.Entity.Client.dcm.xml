@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="SecondOAuth\Entity\Client" table="Client_OAuth2_Second">
+  <entity name="SecondOAuth\Entity\Client" table="Client_SecondOAuth2">
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
@@ -14,5 +14,6 @@
     <one-to-many field="jwt" target-entity="SecondOAuth\Entity\Jwt" mapped-by="client"/>
     <one-to-many field="jti" target-entity="SecondOAuth\Entity\Jti" mapped-by="client"/>
     <one-to-one field="publicKey" target-entity="SecondOAuth\Entity\PublicKey" mapped-by="client"/>
+    <many-to-many field="scope" target-entity="SecondOAuth\Entity\Scope" mapped-by="client"/>
   </entity>
 </doctrine-mapping>

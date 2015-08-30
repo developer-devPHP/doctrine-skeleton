@@ -9,7 +9,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
 use Datetime;
 
-class User implements OAuth2UserInterface, ArraySerializableInterface, ZfcUserInterface
+class User implements
+    OAuth2UserInterface,
+    ArraySerializableInterface,
+    ZfcUserInterface
 {
     // oauth2 fields
     protected $client;
@@ -69,7 +72,10 @@ class User implements OAuth2UserInterface, ArraySerializableInterface, ZfcUserIn
      */
     public function __construct()
     {
-        $this->role = new ArrayCollection();
+        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->accessToken = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->authorizationCode = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->refreshToken = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId()

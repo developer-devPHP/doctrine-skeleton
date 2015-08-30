@@ -1,10 +1,50 @@
 <?xml version="1.0"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="SecondOAuth\Entity\Scope" table="Scope_OAuth2_Second">
+  <entity name="SecondOAuth\Entity\Scope" table="Scope_SecondOAuth2">
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
     <field name="scope" type="text" nullable="true"/>
     <field name="isDefault" type="boolean" nullable="true"/>
+    <many-to-many field="client" target-entity="SecondOAuth\Entity\Client" inversed-by="scope">
+      <join-table name="ClientToScope_SecondOAuth2">
+        <join-columns>
+          <join-column name="scope_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="client_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="authorizationCode" target-entity="SecondOAuth\Entity\AuthorizationCode" inversed-by="scope">
+      <join-table name="AuthorizationCodeToScope_SecondOAuth2">
+        <join-columns>
+          <join-column name="scope_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="authorization_code_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="refreshToken" target-entity="SecondOAuth\Entity\RefreshToken" inversed-by="scope">
+      <join-table name="RefreshTokenToScope_SecondOAuth2">
+        <join-columns>
+          <join-column name="scope_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="refresh_token_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="accessToken" target-entity="SecondOAuth\Entity\AccessToken" inversed-by="scope">
+      <join-table name="AccessTokenToScope_SecondOAuth2">
+        <join-columns>
+          <join-column name="scope_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="access_token_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
   </entity>
 </doctrine-mapping>

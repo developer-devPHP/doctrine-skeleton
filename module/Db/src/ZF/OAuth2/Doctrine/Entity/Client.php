@@ -1,65 +1,12 @@
 <?php
 
-namespace SecondOAuth\Entity;
+namespace ZF\OAuth2\Doctrine\Entity;
 
 /**
  * Client
  */
 class Client
 {
-    public function getArrayCopy()
-    {
-        return array(
-            'id' => $this->getId(),
-            'clientId' => $this->getClientId(),
-            'secret' => $this->getSecret(),
-            'redirectUri' => $this->getRedirectUri(),
-            'grantType' => $this->getGrantType(),
-            'scope' => $this->getScope(),
-            'user' => $this->getUser(),
-        );
-    }
-
-    public function exchangeArray(array $array)
-    {
-        foreach ($array as $key => $value) {
-            switch ($key) {
-                case 'clientId':
-                    $this->setClientId($value);
-                    break;
-                case 'secret':
-                    $this->setSecret($value);
-                    break;
-                case 'redirectUri':
-                    $this->setRedirectUri($value);
-                    break;
-                case 'grantType':
-                    $this->setGrantType($value);
-                    break;
-                case 'user':
-                    $this->setUser($value);
-                    break;
-                case 'scope':
-                    // Clear old collection
-                    foreach ($value as $remove) {
-                        $this->removeScope($remove);
-                        $remove->removeClient($this);
-                    }
-
-                    // Add new collection
-                    foreach ($value as $scope) {
-                        $this->addScope($scope);
-                        $scope->removeClient($this);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @var string
      */
@@ -86,7 +33,7 @@ class Client
     private $id;
 
     /**
-     * @var \SecondOAuth\Entity\PublicKey
+     * @var \ZF\OAuth2\Doctrine\Entity\PublicKey
      */
     private $publicKey;
 
@@ -121,7 +68,7 @@ class Client
     private $scope;
 
     /**
-     * @var \Db\Entity\SecondUser
+     * @var \Db\Entity\User
      */
     private $user;
 
@@ -247,11 +194,11 @@ class Client
     /**
      * Set publicKey
      *
-     * @param \SecondOAuth\Entity\PublicKey $publicKey
+     * @param \ZF\OAuth2\Doctrine\Entity\PublicKey $publicKey
      *
      * @return Client
      */
-    public function setPublicKey(\SecondOAuth\Entity\PublicKey $publicKey = null)
+    public function setPublicKey(\ZF\OAuth2\Doctrine\Entity\PublicKey $publicKey = null)
     {
         $this->publicKey = $publicKey;
 
@@ -261,7 +208,7 @@ class Client
     /**
      * Get publicKey
      *
-     * @return \SecondOAuth\Entity\PublicKey
+     * @return \ZF\OAuth2\Doctrine\Entity\PublicKey
      */
     public function getPublicKey()
     {
@@ -271,11 +218,11 @@ class Client
     /**
      * Add accessToken
      *
-     * @param \SecondOAuth\Entity\AccessToken $accessToken
+     * @param \ZF\OAuth2\Doctrine\Entity\AccessToken $accessToken
      *
      * @return Client
      */
-    public function addAccessToken(\SecondOAuth\Entity\AccessToken $accessToken)
+    public function addAccessToken(\ZF\OAuth2\Doctrine\Entity\AccessToken $accessToken)
     {
         $this->accessToken[] = $accessToken;
 
@@ -285,9 +232,9 @@ class Client
     /**
      * Remove accessToken
      *
-     * @param \SecondOAuth\Entity\AccessToken $accessToken
+     * @param \ZF\OAuth2\Doctrine\Entity\AccessToken $accessToken
      */
-    public function removeAccessToken(\SecondOAuth\Entity\AccessToken $accessToken)
+    public function removeAccessToken(\ZF\OAuth2\Doctrine\Entity\AccessToken $accessToken)
     {
         $this->accessToken->removeElement($accessToken);
     }
@@ -305,11 +252,11 @@ class Client
     /**
      * Add refreshToken
      *
-     * @param \SecondOAuth\Entity\RefreshToken $refreshToken
+     * @param \ZF\OAuth2\Doctrine\Entity\RefreshToken $refreshToken
      *
      * @return Client
      */
-    public function addRefreshToken(\SecondOAuth\Entity\RefreshToken $refreshToken)
+    public function addRefreshToken(\ZF\OAuth2\Doctrine\Entity\RefreshToken $refreshToken)
     {
         $this->refreshToken[] = $refreshToken;
 
@@ -319,9 +266,9 @@ class Client
     /**
      * Remove refreshToken
      *
-     * @param \SecondOAuth\Entity\RefreshToken $refreshToken
+     * @param \ZF\OAuth2\Doctrine\Entity\RefreshToken $refreshToken
      */
-    public function removeRefreshToken(\SecondOAuth\Entity\RefreshToken $refreshToken)
+    public function removeRefreshToken(\ZF\OAuth2\Doctrine\Entity\RefreshToken $refreshToken)
     {
         $this->refreshToken->removeElement($refreshToken);
     }
@@ -339,11 +286,11 @@ class Client
     /**
      * Add authorizationCode
      *
-     * @param \SecondOAuth\Entity\AuthorizationCode $authorizationCode
+     * @param \ZF\OAuth2\Doctrine\Entity\AuthorizationCode $authorizationCode
      *
      * @return Client
      */
-    public function addAuthorizationCode(\SecondOAuth\Entity\AuthorizationCode $authorizationCode)
+    public function addAuthorizationCode(\ZF\OAuth2\Doctrine\Entity\AuthorizationCode $authorizationCode)
     {
         $this->authorizationCode[] = $authorizationCode;
 
@@ -353,9 +300,9 @@ class Client
     /**
      * Remove authorizationCode
      *
-     * @param \SecondOAuth\Entity\AuthorizationCode $authorizationCode
+     * @param \ZF\OAuth2\Doctrine\Entity\AuthorizationCode $authorizationCode
      */
-    public function removeAuthorizationCode(\SecondOAuth\Entity\AuthorizationCode $authorizationCode)
+    public function removeAuthorizationCode(\ZF\OAuth2\Doctrine\Entity\AuthorizationCode $authorizationCode)
     {
         $this->authorizationCode->removeElement($authorizationCode);
     }
@@ -373,11 +320,11 @@ class Client
     /**
      * Add jwt
      *
-     * @param \SecondOAuth\Entity\Jwt $jwt
+     * @param \ZF\OAuth2\Doctrine\Entity\Jwt $jwt
      *
      * @return Client
      */
-    public function addJwt(\SecondOAuth\Entity\Jwt $jwt)
+    public function addJwt(\ZF\OAuth2\Doctrine\Entity\Jwt $jwt)
     {
         $this->jwt[] = $jwt;
 
@@ -387,9 +334,9 @@ class Client
     /**
      * Remove jwt
      *
-     * @param \SecondOAuth\Entity\Jwt $jwt
+     * @param \ZF\OAuth2\Doctrine\Entity\Jwt $jwt
      */
-    public function removeJwt(\SecondOAuth\Entity\Jwt $jwt)
+    public function removeJwt(\ZF\OAuth2\Doctrine\Entity\Jwt $jwt)
     {
         $this->jwt->removeElement($jwt);
     }
@@ -407,11 +354,11 @@ class Client
     /**
      * Add jti
      *
-     * @param \SecondOAuth\Entity\Jti $jti
+     * @param \ZF\OAuth2\Doctrine\Entity\Jti $jti
      *
      * @return Client
      */
-    public function addJti(\SecondOAuth\Entity\Jti $jti)
+    public function addJti(\ZF\OAuth2\Doctrine\Entity\Jti $jti)
     {
         $this->jti[] = $jti;
 
@@ -421,9 +368,9 @@ class Client
     /**
      * Remove jti
      *
-     * @param \SecondOAuth\Entity\Jti $jti
+     * @param \ZF\OAuth2\Doctrine\Entity\Jti $jti
      */
-    public function removeJti(\SecondOAuth\Entity\Jti $jti)
+    public function removeJti(\ZF\OAuth2\Doctrine\Entity\Jti $jti)
     {
         $this->jti->removeElement($jti);
     }
@@ -441,11 +388,11 @@ class Client
     /**
      * Add scope
      *
-     * @param \SecondOAuth\Entity\Scope $scope
+     * @param \ZF\OAuth2\Doctrine\Entity\Scope $scope
      *
      * @return Client
      */
-    public function addScope(\SecondOAuth\Entity\Scope $scope)
+    public function addScope(\ZF\OAuth2\Doctrine\Entity\Scope $scope)
     {
         $this->scope[] = $scope;
 
@@ -455,9 +402,9 @@ class Client
     /**
      * Remove scope
      *
-     * @param \SecondOAuth\Entity\Scope $scope
+     * @param \ZF\OAuth2\Doctrine\Entity\Scope $scope
      */
-    public function removeScope(\SecondOAuth\Entity\Scope $scope)
+    public function removeScope(\ZF\OAuth2\Doctrine\Entity\Scope $scope)
     {
         $this->scope->removeElement($scope);
     }
@@ -475,11 +422,11 @@ class Client
     /**
      * Set user
      *
-     * @param \Db\Entity\SecondUser $user
+     * @param \Db\Entity\User $user
      *
      * @return Client
      */
-    public function setUser(\Db\Entity\SecondUser $user = null)
+    public function setUser(\Db\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -489,11 +436,10 @@ class Client
     /**
      * Get user
      *
-     * @return \Db\Entity\SecondUser
+     * @return \Db\Entity\User
      */
     public function getUser()
     {
         return $this->user;
     }
 }
-

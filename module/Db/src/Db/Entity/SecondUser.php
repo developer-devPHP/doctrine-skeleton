@@ -2,11 +2,60 @@
 
 namespace Db\Entity;
 
+use ZF\OAuth2\Doctrine\Entity\UserInterface as OAuth2UserInterface;
+use Zend\Stdlib\ArraySerializableInterface;
+use ZfcUser\Entity\UserInterface as ZfcUserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Exception;
+use Datetime;
+
 /**
  * SecondUser
  */
-class SecondUser
+class SecondUser implements
+    OAuth2UserInterface,
+    ArraySerializableInterface,
+    ZfcUserInterface
 {
+    public function exchangeArray(array $data)
+    {
+        foreach ($data as $key => $value) {
+            switch ($key) {
+                case 'username':
+                    $this->setUsername($value);
+                    break;
+                case 'email':
+                    $this->setEmail($value);
+                    break;
+                case 'displayName':
+                    $this->setDisplayName($value);
+                    break;
+                case 'password':
+                    $this->setPassword($value);
+                    break;
+                case 'state':
+                    $this->getState($value);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return $this;
+    }
+
+    public function getArrayCopy()
+    {
+        return array(
+            'id' => $this->getId(),
+            'username' => $this->getUsername(),
+            'email' => $this->getEmail(),
+            'displayName' => $this->getDisplayName(),
+            'password' => $this->getPassword(),
+            'state' => $this->getState(),
+        );
+    }
+
     /**
      * @var string
      */
@@ -67,6 +116,12 @@ class SecondUser
         $this->authorizationCode = new \Doctrine\Common\Collections\ArrayCollection();
         $this->refreshToken = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+    public function setId($value)
+    {
+        return Exception("User.setId is not implemented");
+    }
+
 
     /**
      * Set username

@@ -1,53 +1,12 @@
 <?php
 
-namespace SecondOAuth\Entity;
+namespace ZF\OAuth2\Doctrine\Entity;
 
 /**
  * Jti
  */
 class Jti
 {
-    public function exchangeArray(array $array)
-    {
-        foreach ($array as $key => $value) {
-            switch ($key) {
-                case 'client':
-                    $this->setClient($value);
-                    break;
-                case 'subject':
-                    $this->setSubject($value);
-                    break;
-                case 'audience':
-                    $this->setAudience($value);
-                    break;
-                case 'expires':
-                    $this->setExpires($value);
-                    break;
-                case 'jti':
-                    $this->setJti($value);
-                    break;
-                default:
-        // @codeCoverageIgnoreStart
-                    break;
-            }
-        // @codeCoverageIgnoreEnd
-        }
-
-        return $this;
-    }
-
-    public function getArrayCopy()
-    {
-        return array(
-            'id' => $this->getId(),
-            'client' => $this->getClient(),
-            'subject' => $this->getSubject(),
-            'audience' => $this->getAudience(),
-            'expires' => $this->getExpires(),
-            'jti' => $this->getJti(),
-        );
-    }
-
     /**
      * @var string
      */
@@ -74,7 +33,7 @@ class Jti
     private $id;
 
     /**
-     * @var \SecondOAuth\Entity\Client
+     * @var \ZF\OAuth2\Doctrine\Entity\Client
      */
     private $client;
 
@@ -188,11 +147,11 @@ class Jti
     /**
      * Set client
      *
-     * @param \SecondOAuth\Entity\Client $client
+     * @param \ZF\OAuth2\Doctrine\Entity\Client $client
      *
      * @return Jti
      */
-    public function setClient(\SecondOAuth\Entity\Client $client)
+    public function setClient(\ZF\OAuth2\Doctrine\Entity\Client $client)
     {
         $this->client = $client;
 
@@ -202,11 +161,10 @@ class Jti
     /**
      * Get client
      *
-     * @return \SecondOAuth\Entity\Client
+     * @return \ZF\OAuth2\Doctrine\Entity\Client
      */
     public function getClient()
     {
         return $this->client;
     }
 }
-

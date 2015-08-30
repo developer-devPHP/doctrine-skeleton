@@ -1,23 +1,12 @@
 <?php
 
-namespace SecondOAuth\Entity;
+namespace ZF\OAuth2\Doctrine\Entity;
 
 /**
  * PublicKey
  */
 class PublicKey
 {
-    public function getArrayCopy()
-    {
-        return array(
-            'id' => $this->getId(),
-            'publicKey' => $this->getPublicKey(),
-            'privateKey' => $this->getPrivateKey(),
-            'encryptionAlgorithm' => $this->getEncryptionAlgorithm(),
-            'client' => $this->getClient(),
-        );
-    }
-
     /**
      * @var string
      */
@@ -39,7 +28,7 @@ class PublicKey
     private $id;
 
     /**
-     * @var \SecondOAuth\Entity\Client
+     * @var \ZF\OAuth2\Doctrine\Entity\Client
      */
     private $client;
 
@@ -129,11 +118,11 @@ class PublicKey
     /**
      * Set client
      *
-     * @param \SecondOAuth\Entity\Client $client
+     * @param \ZF\OAuth2\Doctrine\Entity\Client $client
      *
      * @return PublicKey
      */
-    public function setClient(\SecondOAuth\Entity\Client $client)
+    public function setClient(\ZF\OAuth2\Doctrine\Entity\Client $client)
     {
         $this->client = $client;
 
@@ -143,11 +132,10 @@ class PublicKey
     /**
      * Get client
      *
-     * @return \SecondOAuth\Entity\Client
+     * @return \ZF\OAuth2\Doctrine\Entity\Client
      */
     public function getClient()
     {
         return $this->client;
     }
 }
-

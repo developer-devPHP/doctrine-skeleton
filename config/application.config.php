@@ -6,36 +6,7 @@
  * @see https://github.com/zendframework/ZFTool
  */
 return array(
-    'modules' => array(
-        'Application',
-        'ZF\\DevelopmentMode',
-        'ZF\\Apigility',
-        'ZF\\Apigility\\Provider',
-        'ZF\\Apigility\\Documentation',
-        'AssetManager',
-        'ZF\\ApiProblem',
-        'ZF\\Configuration',
-        'ZF\\OAuth2',
-        'ZF\\MvcAuth',
-        'ZF\\Hal',
-        'ZF\\ContentNegotiation',
-        'ZF\\ContentValidation',
-        'ZF\\Rest',
-        'ZF\\Rpc',
-        'ZF\\Versioning',
-        'DoctrineModule',
-        'DoctrineORMModule',
-        'DoctrineDataFixtureModule',
-        'Phpro\\DoctrineHydrationModule',
-        'ZF\\Apigility\\Doctrine\\Server',
-        'ZF\\OAuth2\\Doctrine',
-        'ZfcBase',
-        'ZfcUser',
-        'ZfcUserDoctrineORM',
-        'Db',
-        'DbApi',
-        'SecondOAuth',
-    ),
+    'modules' => include __DIR__ . '/modules.config.php',
     'module_listener_options' => array(
         'module_paths' => array(
             './module',

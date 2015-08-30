@@ -1,22 +1,12 @@
 <?php
 
-namespace SecondOAuth\Entity;
+namespace ZF\OAuth2\Doctrine\Entity;
 
 /**
  * Jwt
  */
 class Jwt
 {
-    public function getArrayCopy()
-    {
-        return array(
-            'id' => $this->getId(),
-            'client' => $this->getClient(),
-            'subject' => $this->getSubject(),
-            'publicKey' => $this->getPublicKey(),
-        );
-    }
-
     /**
      * @var string
      */
@@ -33,7 +23,7 @@ class Jwt
     private $id;
 
     /**
-     * @var \SecondOAuth\Entity\Client
+     * @var \ZF\OAuth2\Doctrine\Entity\Client
      */
     private $client;
 
@@ -99,11 +89,11 @@ class Jwt
     /**
      * Set client
      *
-     * @param \SecondOAuth\Entity\Client $client
+     * @param \ZF\OAuth2\Doctrine\Entity\Client $client
      *
      * @return Jwt
      */
-    public function setClient(\SecondOAuth\Entity\Client $client)
+    public function setClient(\ZF\OAuth2\Doctrine\Entity\Client $client)
     {
         $this->client = $client;
 
@@ -113,11 +103,10 @@ class Jwt
     /**
      * Get client
      *
-     * @return \SecondOAuth\Entity\Client
+     * @return \ZF\OAuth2\Doctrine\Entity\Client
      */
     public function getClient()
     {
         return $this->client;
     }
 }
-

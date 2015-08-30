@@ -1,63 +1,12 @@
 <?php
 
-namespace SecondOAuth\Entity;
+namespace ZF\OAuth2\Doctrine\Entity;
 
 /**
  * RefreshToken
  */
 class RefreshToken
 {
-    public function exchangeArray(array $array)
-    {
-        foreach ($array as $key => $value) {
-            switch ($key) {
-                case 'refreshToken':
-                    $this->setRefreshToken($value);
-                    break;
-                case 'expires':
-                    $this->setExpires($value);
-                    break;
-                case 'client':
-                    $this->setClient($value);
-                    break;
-                case 'scope':
-                    // Clear old collection
-                    foreach ($value as $remove) {
-                        $this->removeScope($remove);
-                        $remove->removeRefreshToken($this);
-                    }
-
-                    // Add new collection
-                    foreach ($value as $scope) {
-                        $this->addScope($scope);
-                        $scope->removeRefreshToken($this);
-                    }
-                    break;
-                case 'user':
-                    $this->setUser($value);
-                    break;
-                default:
-            // @codeCoverageIgnoreStart
-                    break;
-            }
-            // @codeCoverageIgnoreEnd
-        }
-
-        return $this;
-    }
-
-    public function getArrayCopy()
-    {
-        return array(
-            'id' => $this->getId(),
-            'refreshToken' => $this->getRefreshToken(),
-            'expires' => $this->getExpires(),
-            'client' => $this->getClient(),
-            'scope' => $this->getScope(),
-            'user' => $this->getUser(),
-        );
-    }
-
     /**
      * @var string
      */
@@ -74,7 +23,7 @@ class RefreshToken
     private $id;
 
     /**
-     * @var \SecondOAuth\Entity\Client
+     * @var \ZF\OAuth2\Doctrine\Entity\Client
      */
     private $client;
 
@@ -84,7 +33,7 @@ class RefreshToken
     private $scope;
 
     /**
-     * @var \Db\Entity\SecondUser
+     * @var \Db\Entity\User
      */
     private $user;
 
@@ -157,11 +106,11 @@ class RefreshToken
     /**
      * Set client
      *
-     * @param \SecondOAuth\Entity\Client $client
+     * @param \ZF\OAuth2\Doctrine\Entity\Client $client
      *
      * @return RefreshToken
      */
-    public function setClient(\SecondOAuth\Entity\Client $client)
+    public function setClient(\ZF\OAuth2\Doctrine\Entity\Client $client)
     {
         $this->client = $client;
 
@@ -171,7 +120,7 @@ class RefreshToken
     /**
      * Get client
      *
-     * @return \SecondOAuth\Entity\Client
+     * @return \ZF\OAuth2\Doctrine\Entity\Client
      */
     public function getClient()
     {
@@ -181,11 +130,11 @@ class RefreshToken
     /**
      * Add scope
      *
-     * @param \SecondOAuth\Entity\Scope $scope
+     * @param \ZF\OAuth2\Doctrine\Entity\Scope $scope
      *
      * @return RefreshToken
      */
-    public function addScope(\SecondOAuth\Entity\Scope $scope)
+    public function addScope(\ZF\OAuth2\Doctrine\Entity\Scope $scope)
     {
         $this->scope[] = $scope;
 
@@ -195,9 +144,9 @@ class RefreshToken
     /**
      * Remove scope
      *
-     * @param \SecondOAuth\Entity\Scope $scope
+     * @param \ZF\OAuth2\Doctrine\Entity\Scope $scope
      */
-    public function removeScope(\SecondOAuth\Entity\Scope $scope)
+    public function removeScope(\ZF\OAuth2\Doctrine\Entity\Scope $scope)
     {
         $this->scope->removeElement($scope);
     }
@@ -215,11 +164,11 @@ class RefreshToken
     /**
      * Set user
      *
-     * @param \Db\Entity\SecondUser $user
+     * @param \Db\Entity\User $user
      *
      * @return RefreshToken
      */
-    public function setUser(\Db\Entity\SecondUser $user = null)
+    public function setUser(\Db\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -229,11 +178,10 @@ class RefreshToken
     /**
      * Get user
      *
-     * @return \Db\Entity\SecondUser
+     * @return \Db\Entity\User
      */
     public function getUser()
     {
         return $this->user;
     }
 }
-
